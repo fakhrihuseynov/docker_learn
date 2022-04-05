@@ -1,0 +1,40 @@
+# To run directly from internet
+docker run hello-world
+
+# List existing docker images
+docker images
+
+# List runing containers on docker-engine
+docker ps
+
+# Search dedicated image on docker-hub
+docker search tomcat
+
+# Download but not run the image
+docker pull tomcat
+
+# Run downloaded image exposing with concrete port for exp: 9000
+docker run -it -p 9000:8080 tomcat
+
+# You can use the same imparative command by changing ports to add new containers and run webpage
+{ docker run -d -p 1234:8080 tomcat
+  docker run -d -p 1236:8080 tomcat }
+
+# run docker using daemon condition it will run once and terminal will be free
+docker run -d -p 9000:80 nginx
+
+# Remove existing images (it will not remove while container is running on cuurent image)
+docker rmi hello-world # or <your_image_id> 
+
+# Remove existing containers (be aware before list the runing containers using "docker ps -a")
+docker rm <your_container_id>
+
+# Build docker image on current folder (-t is a given tag for the image)
+docker build -t fakhri:v1 . # Then you can run "docker run -d -p <any_port>:80 <your_image_name>:<your_tag>"
+# for example: docker run -d -p 5000:80  fakhri:v1
+
+# Change or apply new tags
+docker tag fakhri:v1 fakhri:copy
+
+# Sign in to container instance (mini virtual machine) use exec
+docker exec -it <yout_container_id> /bin/bash
